@@ -11,6 +11,12 @@
          syntaxCheck="false"
          bootstrap="./vendor/autoload.php"
         >
+    <testsuites>
+        <testsuite name="Test Suite">
+            <directory>./src</directory>
+        </testsuite>
+    </testsuites>
+
     <filter>
         <whitelist>
             <directory>./DAG/Xml/Cropper</directory>
