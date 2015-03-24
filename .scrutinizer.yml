@@ -25,6 +25,8 @@ tools:
         config: { level: psr2 }
     php_analyzer: true
     js_hint: true
+    php_code_coverage:
+        enabled: true
 
 checks:
     php:
