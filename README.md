@@ -13,7 +13,7 @@ Crop a part of an XML
 # Usage
 
 ```
-/xml-cropper crop src/DAG/Xml/Cropper/Tests/sample.xml "//book[@id='bk102']"
+xml-cropper crop src/DAG/Xml/Cropper/Tests/sample.xml "//book[@id='bk102']"
 ```
 
 # Tests
