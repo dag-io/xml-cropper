@@ -25,4 +25,4 @@ script:
   - phpunit
 
 notifications:
-    email: false
+    email: true
