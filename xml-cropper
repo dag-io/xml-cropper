@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+if (version_compare(phpversion(), '5.4', '<')) {
+    fwrite(STDERR, "PHP needs to be a minimum version of PHP 5.4\n");
+    exit(1);
+}
+// installed via composer?
+if (file_exists($a = __DIR__.'/../../autoload.php')) {
+    require_once $a;
+} else {
+    require_once __DIR__.'/vendor/autoload.php';
+}
+
+$application = new DAG\Xml\Cropper\Console\Application();
+$application->run();
