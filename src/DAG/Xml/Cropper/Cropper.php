@@ -83,12 +83,12 @@ final class Cropper
     {
         $domXPath = new DOMXpath($domDocument);
 
-        $domElements = $domXPath->query($xpath);
+        $results = $domXPath->query($xpath);
 
         /*
          * Checks
          */
-        if (!$domElements instanceof DOMNodeList) {
+        if (!$results instanceof DOMNodeList) {
             throw new InvalidArgumentException(
                 sprintf('Invalid given xpath expression : "%s"', $xpath),
                 101
@@ -98,7 +98,7 @@ final class Cropper
         /*
          * Throw an exception if there are no result
          */
-        if ($domElements->length == 0) {
+        if ($results->length == 0) {
             throw new InvalidArgumentException(
                 sprintf(
                     'No element found using the following xpath expression : "%s"',
@@ -112,18 +112,18 @@ final class Cropper
          * Throw an exception if there are more than one results
          * It could lead to weird behaviour
          */
-        if ($domElements->length > 1) {
+        if ($results->length > 1) {
             throw new InvalidArgumentException(
                 sprintf(
                     'The given xpath "%s" should select only one element, %d were found',
                     $xpath,
-                    $domElements->length
+                    $results->length
                 ),
                 103
             );
         }
 
-        return $domElements->item(0);
+        return $results->item(0);
     }
 
     /**
