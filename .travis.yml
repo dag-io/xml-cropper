@@ -22,7 +22,7 @@ install:
     - composer update --no-interaction ${COMPOSER_OPTIONS}
 
 script:
-  - phpunit
+  - bin/phpunit -c phpunit.xml.dist src
 
 notifications:
     email: true
