@@ -17,6 +17,8 @@ Crop a part of an XML
 xml-cropper crop src/DAG/Xml/Cropper/Tests/sample.xml "//book[@id='bk102']"
 ```
 
+An online version is available on : http://xmlxml-cropper.dag.io/
+
 # Tests
 
 ```
