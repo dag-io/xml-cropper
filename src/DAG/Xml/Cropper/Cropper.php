@@ -34,6 +34,26 @@ final class Cropper
     }
 
     /**
+     * @param string $content  The file content to crop
+     * @param string $docXPath The xpath expression used to crop
+     *
+     * @return string
+     */
+    public function cropFromContent($content, $docXPath)
+    {
+        $domDocument = new DOMDocument();
+        if (!$domDocument->loadXML($content)) {
+            throw new InvalidArgumentException('Invalid file given', 104);
+        }
+
+        $domElement = $this->getDomElementToCrop($domDocument, $docXPath);
+
+        $this->cropElement($domElement);
+
+        return $domDocument->saveXML();
+    }
+
+    /**
      * @param DOMElement $domElement
      */
     private function cropElement(DOMElement $domElement)
