@@ -52,10 +52,6 @@ final class CropCommand extends Command
 
         $saveTo = $input->getOption('save-to');
         if ($saveTo) {
-            if (!is_writable($saveTo)) {
-                throw new \InvalidArgumentException(sprintf('Can not write in "%s"', $saveTo));
-            }
-
             if (!file_put_contents($saveTo, $result)) {
                 throw new \InvalidArgumentException(sprintf('Can not write in "%s"', $saveTo));
             }
