@@ -5,6 +5,7 @@ use DAG\Xml\Cropper\Cropper;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -31,6 +32,7 @@ final class CropCommand extends Command
                         InputArgument::REQUIRED,
                         'The xpath to select the element to keep'
                     ),
+                    new InputOption('save-to', null, InputOption::VALUE_REQUIRED),
                 ]
             )
             ->setDescription('Crop an XML file');
@@ -48,6 +50,17 @@ final class CropCommand extends Command
             $input->getArgument('path')
         );
 
-        $output->writeln($result);
+        $saveTo = $input->getOption('save-to');
+        if ($saveTo) {
+            if (!is_writable($saveTo)) {
+                throw new \InvalidArgumentException(sprintf('Can not write in "%s"', $saveTo));
+            }
+
+            if (!file_put_contents($saveTo, $result)) {
+                throw new \InvalidArgumentException(sprintf('Can not write in "%s"', $saveTo));
+            }
+        } else {
+            $output->writeln($result);
+        }
     }
 }
